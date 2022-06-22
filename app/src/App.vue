@@ -6,7 +6,7 @@
       dark
     >
       <v-row>
-        <v-col cols="8" lg="10" class="mt-7">
+        <v-col cols="8" sm="9" md="10" xl="11" class="mt-7">
           <v-text-field
             filled
             dense
@@ -15,7 +15,7 @@
             prepend-inner-icon="mdi-magnify"
           ></v-text-field>
         </v-col>
-        <v-col cols="4" lg="2" class="mt-6">
+        <v-col cols="4" sm="3" md="2" xl="1" class="mt-6">
           <v-btn icon>
             <v-icon>mdi-filter</v-icon>
           </v-btn>
