@@ -21,20 +21,21 @@
 </template>
 
 <script>
-  export default {
-    name: 'Home',
+export default {
+  name: "Home",
 
-    data: function () {
-      return {
-        items: fetch('https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json')
-              .then(response => response.json())
-              .then(data => {
-                  this.items = data
-                  
-                  return this.items;
-                  }
-              ),
-      }
-    }
-  }
+  data: function () {
+    return {
+      items: fetch(
+        "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          this.items = data;
+
+          return this.items;
+        }),
+    };
+  },
+};
 </script>
