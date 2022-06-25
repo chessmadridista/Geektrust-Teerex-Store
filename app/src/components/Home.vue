@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-card>
-          <v-img></v-img>
+          <v-img>{{ items }}</v-img>
         </v-card>
       </v-col>
       <v-col cols="12">
@@ -23,19 +23,22 @@
 <script>
 export default {
   name: "Home",
-
   data: function () {
     return {
-      items: fetch(
-        "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json"
-      )
+      items: [],
+    }
+  },
+  beforeCreate() {
+    this.items = fetch("https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json")
         .then((response) => response.json())
         .then((data) => {
           this.items = data;
-
-          return this.items;
-        }),
-    };
+          return true;
+        })
+    console.log("'Items' has been initialized.");
   },
+  mounted() {
+    console.log("The component is now mounted.");
+  }
 };
 </script>
