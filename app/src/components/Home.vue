@@ -1,8 +1,16 @@
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="item in items" :key="item.id" cols="12" lg="4">
-        <v-card align="center">
+      <v-col 
+      v-for="item in items" 
+      :key="item.id" 
+      cols="12" 
+      lg="4"
+      align="center">
+        <v-card 
+        height="300px" 
+        width="300px" 
+        align="center">
           <v-img
           :src="item.imageURL"
           width="250px"
