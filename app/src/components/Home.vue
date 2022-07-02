@@ -1,19 +1,12 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12">
-        <v-card>
-          <v-img>{{ items }}</v-img>
-        </v-card>
-      </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-img></v-img>
-        </v-card>
-      </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-img></v-img>
+      <v-col v-for="item in items" :key="item.id" cols="12" lg="4">
+        <v-card align="center">
+          <v-img
+          :src="item.imageURL"
+          width="250px"
+          height="250px"></v-img>
         </v-card>
       </v-col>
     </v-row>
