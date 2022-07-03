@@ -67,9 +67,6 @@ export default {
           return true;
         })
     console.log("'Items' has been initialized.");
-  },
-  mounted() {
-    console.log("The component is now mounted.");
   }
 };
 </script>
