@@ -8,7 +8,7 @@
       md="6"
       lg="4"
       align="center"
-      class="mt-lg-16">
+      class="my-md-8">
         <v-card 
         height="375px" 
         width="300px" 
