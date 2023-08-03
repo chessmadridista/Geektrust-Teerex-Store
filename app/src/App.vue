@@ -5,9 +5,6 @@
       color="primary"
       dark
     >
-      <v-app-bar-title class="title">
-        Teerex
-      </v-app-bar-title>
       <v-container class="ml-4 mt-6">
         <v-text-field
           dense
