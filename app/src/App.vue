@@ -14,6 +14,7 @@
           outlined
           label="Search TeeRex"
           append-icon="mdi-magnify"
+          @click:append="search"
         />
       </v-container>
           <v-btn icon>
@@ -35,6 +36,11 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    search() {
+      alert("YEEHAW!");
+    },
+  },
 };
 </script>
 <style>

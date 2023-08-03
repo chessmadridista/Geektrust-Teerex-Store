@@ -4,6 +4,7 @@ import vuetify from './plugins/vuetify'
 import VueRouter from 'vue-router';
 import Home from './components/Home.vue'
 import Checkout from './components/Checkout.vue'
+import store from './store'
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false
@@ -25,5 +26,6 @@ const router = new VueRouter({
 new Vue({
   vuetify,
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
