@@ -16,7 +16,7 @@
           <v-img
           :src="item.imageURL"
           width="250px"
-          height="250px"></v-img>
+          height="250px" />
           <v-row>
             <v-col cols="8">
               <v-card-title><v-icon color="primary">{{getGenderIcon(item.gender)}}</v-icon>{{ item.name }}</v-card-title>
@@ -42,6 +42,9 @@
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
             </v-col>
+            <!-- <v-col cols="4" class="mt-12">
+              <v-text-field label='Quantity' dense outlined type='number' />
+            </v-col> -->
           </v-row>
         </v-card>
       </v-col>
