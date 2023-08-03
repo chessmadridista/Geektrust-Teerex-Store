@@ -25,7 +25,6 @@
         </v-col>
       </v-row>
     </v-app-bar>
-
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -41,5 +40,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style>
+#app {
+  background: #e3e4ff;
+}
 </style>
