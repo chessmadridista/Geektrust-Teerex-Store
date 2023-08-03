@@ -19,7 +19,7 @@
           height="250px"></v-img>
           <v-row>
             <v-col cols="8">
-              <v-card-title>{{ item.name }}</v-card-title>
+              <v-card-title><v-icon color="primary">{{getGenderIcon(item.gender)}}</v-icon>{{ item.name }}</v-card-title>
               <v-card-text>
                 <v-row class="ml-0">
                     <v-rating
@@ -29,8 +29,6 @@
                     half-increments
                     readonly
                     size="14"></v-rating>
-                    <!-- <v-btn
-                    color="primary">Add</v-btn> -->
                 </v-row>
                 <v-row class="ml-1 mt-4">
                     <span>${{ item.price }}</span>
@@ -58,6 +56,17 @@ export default {
     return {
       items: [],
     }
+  },
+  methods: {
+    getGenderIcon(gender) {
+      let icon = 'mdi-human-male';
+
+      if (gender == 'Women') {
+        icon = 'mdi-human-female';
+      }
+
+      return icon;
+    },
   },
   beforeCreate() {
     this.items = fetch("https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json")
