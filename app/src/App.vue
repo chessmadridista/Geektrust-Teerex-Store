@@ -38,6 +38,9 @@ export default {
       alert("YEEHAW!");
     },
   },
+  beforeCreate() {
+    this.$store.dispatch('initItems');
+  },
 };
 </script>
 <style>
