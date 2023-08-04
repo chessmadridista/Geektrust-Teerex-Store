@@ -2,7 +2,7 @@
       <v-container>
         <v-row>
         <v-col 
-        v-for="item in items" 
+        v-for="item in $store.getters.getItemsInCart" 
         :key="item.id" 
         cols="12"
         md="6"
@@ -29,8 +29,6 @@
                       half-increments
                       readonly
                       size="14"></v-rating>
-                      <!-- <v-btn
-                      color="primary">Add</v-btn> -->
                   </v-row>
                   <v-row class="ml-1 mt-4">
                       <span>${{ item.price }}</span>

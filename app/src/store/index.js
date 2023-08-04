@@ -8,6 +8,11 @@ export default new Vuex.Store({
     items: [],
   },
   getters: {
+    getItemsInCart(state) {
+      return state.items.filter((item) => {
+        return item.quantityInCart > 0;
+      });
+    },
   },
   mutations: {
     INIT_ITEMS(state, items) {
