@@ -36,28 +36,34 @@
           </v-card-subtitle>
           <v-card-actions>
             <v-container>
-              <v-row>
-                <v-col v-if="isItemInCart(item.id)">
+              <v-row v-if="isItemInCart(item.id)">
+                <v-col cols="8">
                   <v-text-field 
                     v-if="isItemInCart(item.id)"
+                    background-color="#f5f5ff"
                     dense
                     outlined
-                    width="100"
                     class="mx-auto"
                     label='Quantity'
                     type='number'
                     v-model='item.quantityInCart'
                   />  
                 </v-col>
-                <v-col v-else>
+                <v-col cols="4">
+                  <v-icon color='error' @click="decreaseQuantity(item.id)">mdi-minus</v-icon>
+                  <v-icon class="ml-4" color='primary' @click="increaseQuantity(item.id)">mdi-plus</v-icon>
+                </v-col>
+              </v-row>
+              <v-row v-else>
+                <v-col>
                   <v-btn
-            color="primary"
-            block
-            class="mx-auto"
-            @click="addItem(item.id)"
-            >
-              <v-icon left>mdi-plus</v-icon>Add to cart
-            </v-btn>
+                  color="primary"
+                  block
+                  class="mx-auto"
+                  @click="addItem(item.id)"
+                  >
+                    <v-icon left>mdi-plus</v-icon>Add to cart
+                  </v-btn>
                 </v-col>
               </v-row>
             </v-container>
