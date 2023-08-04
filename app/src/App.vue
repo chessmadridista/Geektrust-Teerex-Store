@@ -5,6 +5,12 @@
       color="primary"
       dark
     >
+      <router-link to="/">
+        <v-img
+          src="./assets/Teerex logo.png"
+          width="50"
+        />
+      </router-link>
       <v-container class="ml-4 mt-6">
         <v-text-field
           dense
@@ -17,9 +23,11 @@
           <v-btn icon>
             <v-icon>mdi-filter</v-icon>
           </v-btn>
-          <v-btn icon>
-            <v-icon>mdi-cart-outline</v-icon>
-          </v-btn>
+          <router-link to="/checkout">
+            <v-btn icon>
+              <v-icon>mdi-cart-outline</v-icon>
+            </v-btn>
+          </router-link>
     </v-app-bar>
     <v-main>
       <router-view></router-view>
