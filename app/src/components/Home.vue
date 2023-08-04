@@ -34,10 +34,17 @@
             ₹{{ item.price }}
           </v-card-subtitle>
           <v-card-actions>
+            <v-text-field 
+              v-if="isItemInCart(item.id)"
+              label='Quantity'
+              v-model='item.quantityInCart'
+            />
             <v-btn
+            v-else
             color="primary"
             width="200"
             class="mx-auto"
+            @click="addItem(item.id)"
             >
               <v-icon left>mdi-plus</v-icon>Add to cart
             </v-btn>
@@ -65,6 +72,12 @@ export default {
       }
 
       return icon;
+    },
+    addItem(id) {
+      this.$store.dispatch('addItem', id - 1);
+    },
+    isItemInCart(id) {
+      return this.$store.state.items[id - 1].quantityInCart > 0;
     },
   },
 };

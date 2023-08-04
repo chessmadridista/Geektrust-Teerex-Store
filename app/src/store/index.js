@@ -13,6 +13,9 @@ export default new Vuex.Store({
     INIT_ITEMS(state, items) {
       state.items = items;
     },
+    ADD_ITEM(state, id) {
+      state.items[id].quantityInCart += 1;
+    }
   },
   actions: {
     async initItems(context) {
@@ -25,6 +28,9 @@ export default new Vuex.Store({
       context.commit('INIT_ITEMS', items);
       console.log("'Items' has been initialized.");
     },
+    addItem(context, id) {
+      context.commit('ADD_ITEM', id);
+    }
   },
   modules: {
   }
