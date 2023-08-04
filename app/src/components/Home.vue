@@ -11,6 +11,7 @@
         <v-card  
         class="pt-4 pb-8"
         width="300px" 
+        height="390"
         >
           <v-img
           class="mx-auto"
@@ -34,20 +35,50 @@
             ₹{{ item.price }}
           </v-card-subtitle>
           <v-card-actions>
-            <v-text-field 
+            <v-container>
+              <v-row>
+                <v-col v-if="isItemInCart(item.id)">
+                  <v-text-field 
+                    v-if="isItemInCart(item.id)"
+                    dense
+                    outlined
+                    width="100"
+                    class="mx-auto"
+                    label='Quantity'
+                    type='number'
+                    v-model='item.quantityInCart'
+                  />  
+                </v-col>
+                <v-col v-else>
+                  <v-btn
+            color="primary"
+            block
+            class="mx-auto"
+            @click="addItem(item.id)"
+            >
+              <v-icon left>mdi-plus</v-icon>Add to cart
+            </v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
+            <!-- <v-text-field 
               v-if="isItemInCart(item.id)"
+              dense
+              outlined
+              width="100"
+              class="mx-auto"
               label='Quantity'
+              type='number'
               v-model='item.quantityInCart'
-            />
-            <v-btn
-            v-else
+            /> -->
+            <!-- <v-btn
             color="primary"
             width="200"
             class="mx-auto"
             @click="addItem(item.id)"
             >
               <v-icon left>mdi-plus</v-icon>Add to cart
-            </v-btn>
+            </v-btn> -->
           </v-card-actions>
         </v-card>
       </v-col>
