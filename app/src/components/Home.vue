@@ -36,7 +36,7 @@
           <v-card-actions>
             <v-btn
             color="primary"
-            width="200px"
+            width="200"
             class="mx-auto"
             >
               <v-icon left>mdi-plus</v-icon>Add to cart
