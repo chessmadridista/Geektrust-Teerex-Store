@@ -52,7 +52,7 @@
                 </v-col>
                 <v-col cols="4">
                   <v-icon color='error' @click="decreaseQuantity(item.id)">mdi-minus</v-icon>
-                  <v-icon class="ml-4" color='primary' @click="increaseQuantity(item.id)">mdi-plus</v-icon>
+                  <v-icon class="ml-4" color='primary' @click="increaseQuantity(item.id)" :disabled="isItemOutOfStock(item.id)">mdi-plus</v-icon>
                 </v-col>
               </v-row>
               <v-row v-else>
@@ -68,24 +68,6 @@
                 </v-col>
               </v-row>
             </v-container>
-            <!-- <v-text-field 
-              v-if="isItemInCart(item.id)"
-              dense
-              outlined
-              width="100"
-              class="mx-auto"
-              label='Quantity'
-              type='number'
-              v-model='item.quantityInCart'
-            /> -->
-            <!-- <v-btn
-            color="primary"
-            width="200"
-            class="mx-auto"
-            @click="addItem(item.id)"
-            >
-              <v-icon left>mdi-plus</v-icon>Add to cart
-            </v-btn> -->
           </v-card-actions>
         </v-card>
       </v-col>
@@ -116,6 +98,21 @@ export default {
     },
     isItemInCart(id) {
       return this.$store.state.items[id - 1].quantityInCart > 0;
+    },
+    isItemOutOfStock(id) {
+      const item = this.$store.state.items[id - 1];
+      
+      if (item.quantityInCart >= item.quantity) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    increaseQuantity(id) {
+      this.$store.dispatch('increaseQuantity', id - 1);
+    },
+    decreaseQuantity(id) {
+      this.$store.dispatch('decreaseQuantity', id - 1);
     },
   },
 };

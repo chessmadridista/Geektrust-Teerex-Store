@@ -19,8 +19,14 @@ export default new Vuex.Store({
       state.items = items;
     },
     ADD_ITEM(state, id) {
+      state.items[id].quantityInCart = 1;
+    },
+    INCREASE_QUANTITY(state, id) {
       state.items[id].quantityInCart += 1;
-    }
+    },
+    DECREASE_QUANTITY(state, id) {
+      state.items[id].quantityInCart -= 1;
+    },
   },
   actions: {
     async initItems(context) {
@@ -35,7 +41,13 @@ export default new Vuex.Store({
     },
     addItem(context, id) {
       context.commit('ADD_ITEM', id);
-    }
+    },
+    increaseQuantity(context, id) {
+      context.commit('INCREASE_QUANTITY', id);
+    },
+    decreaseQuantity(context, id) {
+      context.commit('DECREASE_QUANTITY', id);
+    },
   },
   modules: {
   }
