@@ -67,15 +67,5 @@ export default {
       return icon;
     },
   },
-  beforeCreate() {
-    // this.items = fetch("https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json")
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //       this.items = data;
-    //       return true;
-    //     })
-    // console.log("'Items' has been initialized.");
-    this.items = this.$store.state.items;
-  }
 };
 </script>
