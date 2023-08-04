@@ -7,40 +7,41 @@
       cols="12"
       md="6"
       lg="4"
-      align="center"
-      class="my-md-8">
+      class="mt-md-4">
         <v-card  
-        class="pt-4"
+        class="pt-4 pb-8"
         width="300px" 
-        align="center">
+        >
           <v-img
+          class="mx-auto"
           :src="item.imageURL"
           width="180px"
+          height="180px"
            />
-          <v-card-title><v-icon color="primary">{{getGenderIcon(item.gender)}}</v-icon>{{ item.name }}</v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="5">
-                      <v-rating
-                      :value="4.5"
-                      color="amber"
-                      dense
-                      half-increments
-                      readonly
-                      size="14"></v-rating>
-                      <span>${{ item.price }}</span>
-                    </v-col>
-                    <v-col cols="7">
-                      <v-btn
-                      color="primary"
-                      fab>
-                        <v-icon>mdi-plus</v-icon>
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
+          <v-card-title>
+            <v-icon color="primary">{{getGenderIcon(item.gender)}}</v-icon>
+            {{ item.name }} 
+            <v-rating
+            class="ml-4"
+              :value="4.5"
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="14"></v-rating>
+          </v-card-title>
+          <v-card-subtitle class="text-left pl-6">
+            ₹{{ item.price }}
+          </v-card-subtitle>
+          <v-card-actions>
+            <v-btn
+            color="primary"
+            width="200px"
+            class="mx-auto"
+            >
+              <v-icon left>mdi-plus</v-icon>Add to cart
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
