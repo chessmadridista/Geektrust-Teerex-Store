@@ -41,6 +41,7 @@
                   <v-text-field 
                     v-if="isItemInCart(item.id)"
                     background-color="#f5f5ff"
+                    readonly
                     dense
                     outlined
                     class="mx-auto"
