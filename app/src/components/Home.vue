@@ -9,43 +9,38 @@
       lg="4"
       align="center"
       class="my-md-8">
-        <v-card 
-        height="375px" 
+        <v-card  
+        class="pt-4"
         width="300px" 
         align="center">
           <v-img
           :src="item.imageURL"
-          width="250px"
-          height="250px" />
-          <v-row>
-            <v-col cols="8">
-              <v-card-title><v-icon color="primary">{{getGenderIcon(item.gender)}}</v-icon>{{ item.name }}</v-card-title>
+          width="180px"
+           />
+          <v-card-title><v-icon color="primary">{{getGenderIcon(item.gender)}}</v-icon>{{ item.name }}</v-card-title>
               <v-card-text>
-                <v-row class="ml-0">
-                    <v-rating
-                    :value="4.5"
-                    color="amber"
-                    dense
-                    half-increments
-                    readonly
-                    size="14"></v-rating>
-                </v-row>
-                <v-row class="ml-1 mt-4">
-                    <span>${{ item.price }}</span>
-                </v-row>
+                <v-container>
+                  <v-row>
+                    <v-col cols="5">
+                      <v-rating
+                      :value="4.5"
+                      color="amber"
+                      dense
+                      half-increments
+                      readonly
+                      size="14"></v-rating>
+                      <span>${{ item.price }}</span>
+                    </v-col>
+                    <v-col cols="7">
+                      <v-btn
+                      color="primary"
+                      fab>
+                        <v-icon>mdi-plus</v-icon>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
               </v-card-text>
-            </v-col>
-            <v-col cols="2" class="mt-10">
-              <v-btn
-              color="primary"
-              fab>
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-            </v-col>
-            <!-- <v-col cols="4" class="mt-12">
-              <v-text-field label='Quantity' dense outlined type='number' />
-            </v-col> -->
-          </v-row>
         </v-card>
       </v-col>
     </v-row>
