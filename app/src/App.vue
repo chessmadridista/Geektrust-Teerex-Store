@@ -13,6 +13,7 @@
       </router-link>
       <v-container class="ml-4 mt-6">
         <v-text-field
+          filled
           dense
           outlined
           label="Search TeeRex"
