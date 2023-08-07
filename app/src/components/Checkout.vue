@@ -12,7 +12,7 @@
           <v-card 
           height="375px" 
           width="300px" 
-          align="center">
+          >
             <v-img
             :src="item.imageURL"
             width="250px"
