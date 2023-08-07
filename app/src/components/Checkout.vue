@@ -22,14 +22,6 @@
             />
             <v-card-title>
               {{ item.name }} 
-              <v-rating
-              class="ml-4"
-                :value="4.5"
-                color="amber"
-                dense
-                half-increments
-                readonly
-                size="14"></v-rating>
             </v-card-title>
             <v-card-subtitle class="text-left pl-6">
               ₹{{ item.price * item.quantityInCart }}
