@@ -1,5 +1,16 @@
 <template>
       <v-container>
+        <v-row v-if="$store.getters.getItemsInCart.length === 0">
+          <v-col align='center'>
+            <v-card class="text-center pa-6">
+              <v-card-title class="justify-center grey--text text--darken-1">Oops!</v-card-title>
+              <v-icon color="blue" size="100">mdi-cart</v-icon>
+              <v-card-text>
+                There are no items in the cart.
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col 
           v-for="item in $store.getters.getItemsInCart" 
