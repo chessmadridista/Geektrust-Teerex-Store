@@ -71,7 +71,7 @@ export default {
   components: {
     CheckoutDeleteItemConfirmation,
   },
-  data: function () {
+  data() {
     return {
       id: null,
     };
