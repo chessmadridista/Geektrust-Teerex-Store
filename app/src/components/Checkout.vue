@@ -1,56 +1,61 @@
 <template>
       <v-container>
         <v-row>
-        <v-col 
-        v-for="item in $store.getters.getItemsInCart" 
-        :key="item.id" 
-        cols="12"
-        md="6"
-        lg="4"
-        align="center"
-        class="my-md-8">
-          <v-card  
-            class="pt-4 pb-8"
-            width="300" 
-            height="390"
-            >
-            <v-img
-            class="mx-auto"
-            :src="item.imageURL"
-            width="180px"
-            height="180px"
-            />
-            <v-card-title>
-              {{ item.name }} 
-            </v-card-title>
-            <v-card-subtitle class="text-left pl-6">
-              ₹{{ item.price * item.quantityInCart }}
-            </v-card-subtitle>
-            <v-card-actions>
-              <v-container>
-                <v-row>
-                  <v-col cols="8">
-                    <v-text-field 
-                      background-color="#f5f5ff"
-                      readonly
-                      dense
-                      outlined
-                      class="mx-auto"
-                      label='Quantity'
-                      type='number'
-                      v-model='item.quantityInCart'
-                    />  
-                  </v-col>
-                  <v-col cols="4">
-                    <v-icon color='error' @click="decreaseQuantity(item.id)">mdi-minus</v-icon>
-                    <v-icon class="ml-4" color='primary' @click="increaseQuantity(item.id)" :disabled="isItemOutOfStock(item.id)">mdi-plus</v-icon>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
+          <v-col 
+          v-for="item in $store.getters.getItemsInCart" 
+          :key="item.id" 
+          cols="12"
+          md="6"
+          lg="4"
+          align="center"
+          class="my-md-8">
+            <v-card  
+              class="pt-4 pb-8"
+              width="300" 
+              height="390"
+              >
+              <v-img
+              class="mx-auto"
+              :src="item.imageURL"
+              width="180px"
+              height="180px"
+              />
+              <v-card-title>
+                {{ item.name }} 
+              </v-card-title>
+              <v-card-subtitle class="text-left pl-6">
+                ₹{{ item.price * item.quantityInCart }}
+              </v-card-subtitle>
+              <v-card-actions>
+                <v-container>
+                  <v-row>
+                    <v-col cols="8">
+                      <v-text-field 
+                        background-color="#f5f5ff"
+                        readonly
+                        dense
+                        outlined
+                        class="mx-auto"
+                        label='Quantity'
+                        type='number'
+                        v-model='item.quantityInCart'
+                      />  
+                    </v-col>
+                    <v-col cols="4">
+                      <v-icon color='error' @click="decreaseQuantity(item.id)">mdi-minus</v-icon>
+                      <v-icon class="ml-4" color='primary' @click="increaseQuantity(item.id)" :disabled="isItemOutOfStock(item.id)">mdi-plus</v-icon>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row v-if="$store.getters.getItemsInCart.length">
+          <v-col>
+            <v-btn color="primary" block>Place order</v-btn>
+          </v-col>
+        </v-row>
       <CheckoutDeleteItemConfirmation :id="id" />
     </v-container>
 </template>
