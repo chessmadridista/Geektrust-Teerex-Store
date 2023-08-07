@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     items: [],
+    showDeletionConfirmationModal: false,
   },
   getters: {
     getItemsInCart(state) {
@@ -27,6 +28,12 @@ export default new Vuex.Store({
     DECREASE_QUANTITY(state, id) {
       state.items[id].quantityInCart -= 1;
     },
+    SHOW_DELETION_CONFIRMATION_MODAL(state) {
+      state.showDeletionConfirmationModal = true;
+    },
+    HIDE_DELETION_CONFIRMATION_MODAL(state) {
+      state.showDeletionConfirmationModal = false;
+    },
   },
   actions: {
     async initItems(context) {
@@ -47,6 +54,12 @@ export default new Vuex.Store({
     },
     decreaseQuantity(context, id) {
       context.commit('DECREASE_QUANTITY', id);
+    },
+    showDeletionConfirmationModal(context) {
+      context.commit('SHOW_DELETION_CONFIRMATION_MODAL');
+    },
+    hideDeletionConfirmationModal(context) {
+      context.commit('HIDE_DELETION_CONFIRMATION_MODAL');
     },
   },
   modules: {

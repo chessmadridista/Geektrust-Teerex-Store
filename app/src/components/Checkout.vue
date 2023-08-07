@@ -9,62 +9,94 @@
         lg="4"
         align="center"
         class="my-md-8">
-          <v-card 
-          height="375px" 
-          width="300px" 
-          >
+          <v-card  
+            class="pt-4 pb-8"
+            width="300" 
+            height="390"
+            >
             <v-img
+            class="mx-auto"
             :src="item.imageURL"
-            width="250px"
-            height="250px"></v-img>
-            <v-row>
-              <v-col cols="8">
-                <v-card-title>{{ item.name }}</v-card-title>
-                <v-card-text>
-                  <v-row class="ml-0">
-                      <v-rating
-                      :value="4.5"
-                      color="amber"
-                      dense
-                      half-increments
+            width="180px"
+            height="180px"
+            />
+            <v-card-title>
+              {{ item.name }} 
+              <v-rating
+              class="ml-4"
+                :value="4.5"
+                color="amber"
+                dense
+                half-increments
+                readonly
+                size="14"></v-rating>
+            </v-card-title>
+            <v-card-subtitle class="text-left pl-6">
+              ₹{{ item.price * item.quantityInCart }}
+            </v-card-subtitle>
+            <v-card-actions>
+              <v-container>
+                <v-row>
+                  <v-col cols="8">
+                    <v-text-field 
+                      background-color="#f5f5ff"
                       readonly
-                      size="14"></v-rating>
-                  </v-row>
-                  <v-row class="ml-1 mt-4">
-                      <span>${{ item.price }}</span>
-                  </v-row>
-                </v-card-text>
-              </v-col>
-              <v-col cols="2" class="mt-10">
-                <v-btn
-                color="error"
-                fab>
-                  <v-icon>mdi-minus</v-icon>
-                </v-btn>
-              </v-col>
-            </v-row>
+                      dense
+                      outlined
+                      class="mx-auto"
+                      label='Quantity'
+                      type='number'
+                      v-model='item.quantityInCart'
+                    />  
+                  </v-col>
+                  <v-col cols="4">
+                    <v-icon color='error' @click="decreaseQuantity(item.id)">mdi-minus</v-icon>
+                    <v-icon class="ml-4" color='primary' @click="increaseQuantity(item.id)" :disabled="isItemOutOfStock(item.id)">mdi-plus</v-icon>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
+      <CheckoutDeleteItemConfirmation :id="id" />
     </v-container>
 </template>
 
 <script>
+import CheckoutDeleteItemConfirmation from './CheckoutDeleteItemConfirmation.vue';
+
 export default {
   name: 'Checkout',
+  components: {
+    CheckoutDeleteItemConfirmation,
+  },
   data: function () {
     return {
-      items: [],
-    }
+      id: null,
+    };
   },
-  beforeCreate() {
-    this.items = fetch("https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json")
-        .then((response) => response.json())
-        .then((data) => {
-          this.items = data;
-          return true;
-        })
-    console.log("'Items' has been initialized.");
-  }
+  methods: {
+    isItemOutOfStock(id) {
+      const item = this.$store.state.items[id - 1];
+      
+      if (item.quantityInCart >= item.quantity) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    increaseQuantity(id) {
+      this.$store.dispatch('increaseQuantity', id - 1);
+    },
+    decreaseQuantity(id) {
+      if (this.$store.state.items[id - 1].quantityInCart === 1) {
+        this.id = id;
+        this.$store.dispatch('showDeletionConfirmationModal');
+      } else {
+        this.$store.dispatch('decreaseQuantity', id - 1);
+      }
+    },
+  },
 }
 </script>
