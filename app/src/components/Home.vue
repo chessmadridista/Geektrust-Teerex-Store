@@ -7,7 +7,8 @@
       cols="12"
       md="6"
       lg="4"
-      class="mt-md-4">
+      class="mt-md-4"
+      align="center">
         <v-card  
         class="pt-4 pb-8"
         width="300px" 
