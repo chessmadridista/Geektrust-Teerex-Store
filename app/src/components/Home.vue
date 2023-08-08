@@ -1,6 +1,13 @@
 <template>
   <v-container>
     <v-row>
+      <v-col align="right">
+        <v-btn color="primary" icon>
+          <v-icon>mdi-filter</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col 
       v-for="item in this.$store.state.items" 
       :key="item.id" 

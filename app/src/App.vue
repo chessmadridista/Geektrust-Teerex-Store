@@ -21,9 +21,6 @@
           @click:append="search"
         />
       </v-container>
-          <v-btn icon>
-            <v-icon>mdi-filter</v-icon>
-          </v-btn>
           <router-link to="/checkout">
             <v-btn icon>
               <v-icon>mdi-cart-outline</v-icon>
