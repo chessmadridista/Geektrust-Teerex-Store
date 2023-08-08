@@ -100,7 +100,6 @@ export default {
   methods: {
     ...mapActions([
       'showFilterDialog',
-      'hideFilterDialog',
     ]),
     getGenderIcon(gender) {
       let icon = 'mdi-human-male';
