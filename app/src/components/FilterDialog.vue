@@ -16,7 +16,7 @@
                 </v-container>
             </v-card-text>
             <v-card-actions>
-                <v-btn text color="error">Cancel</v-btn>
+                <v-btn text color="error" @click="hideFilterDialog">Cancel</v-btn>
                 <v-spacer></v-spacer>
                 <v-btn color="primary">Apply</v-btn>
             </v-card-actions>
@@ -24,48 +24,59 @@
     </v-dialog>
 </template>
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     name: 'FilterDialog',
-    filters: [
-        {
-            id: 0,
-            label: 'Colour',
-            availableFilters: [
-                'Red',
-                'Blue',
-                'Green',
+    data() {
+        return {
+            filters: [
+                {
+                    id: 0,
+                    label: 'Colour',
+                    availableFilters: [
+                        'Red',
+                        'Blue',
+                        'Green',
+                    ],
+                    appliedFilters: [],
+                },
+                {
+                    id: 1,
+                    label: 'Gender',
+                    availableFilters: [
+                        'Men',
+                        'Women',
+                    ],
+                    appliedFilters: [],
+                },
+                {
+                    id: 2,
+                    label: 'Price',
+                    availableFilters: [
+                        '< ₹250',
+                        '₹250 - ₹450',
+                        '> ₹450',
+                    ],
+                    appliedFilters: [],
+                },
+                {
+                    id: 3,
+                    label: 'Type',
+                    availableFilters: [
+                        'Polo',
+                        'Hoodie',
+                        'Basic',
+                    ],
+                    appliedFilters: [],
+                },
             ],
-            appliedFilters: [],
-        },
-        {
-            id: 1,
-            label: 'Gender',
-            availableFilters: [
-                'Men',
-                'Women',
-            ],
-            appliedFilters: [],
-        },
-        {
-            id: 2,
-            label: 'Price',
-            availableFilters: [
-                '< ₹250',
-                '₹250 - ₹450',
-                '> ₹450',
-            ],
-            appliedFilters: [],
-        },
-        {
-            id: 3,
-            label: 'Type',
-            availableFilters: [
-                'Polo',
-                'Hoodie',
-                'Basic',
-            ],
-            appliedFilters: [],
-        },
-    ],
+        };
+    },
+    methods: {
+        ...mapActions([
+            'hideFilterDialog',
+        ]),
+    },
 }
 </script>
