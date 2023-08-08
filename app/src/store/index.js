@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     items: [],
     showDeletionConfirmationModal: false,
+    showFilterDialog: false,
   },
   getters: {
     getItemsInCart(state) {
@@ -34,6 +35,12 @@ export default new Vuex.Store({
     HIDE_DELETION_CONFIRMATION_MODAL(state) {
       state.showDeletionConfirmationModal = false;
     },
+    SHOW_FILTER_DIALOG(state) {
+      state.showFilterDialog = true;
+    },
+    HIDE_FILTER_DIALOG(state) {
+      state.showFilterDialog = false;
+    },
   },
   actions: {
     async initItems(context) {
@@ -60,6 +67,12 @@ export default new Vuex.Store({
     },
     hideDeletionConfirmationModal(context) {
       context.commit('HIDE_DELETION_CONFIRMATION_MODAL');
+    },
+    showFilterDialog(context) {
+      context.commit('SHOW_FILTER_DIALOG');
+    },
+    hideFilterDialog(context) {
+      context.commit('HIDE_FILTER_DIALOG');
     },
   },
   modules: {

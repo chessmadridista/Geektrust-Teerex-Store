@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col align="right">
-        <v-btn color="primary" icon>
+        <v-btn color="primary" icon @click="showFilterDialog">
           <v-icon>mdi-filter</v-icon>
         </v-btn>
       </v-col>
@@ -80,18 +80,28 @@
         </v-card>
       </v-col>
     </v-row>
+    <FilterDialog />
   </v-container>
 </template>
-
 <script>
+import FilterDialog from './FilterDialog.vue';
+import { mapActions } from 'vuex';
+
 export default {
   name: "Home",
+  components: {
+    FilterDialog,
+  },
   data: function () {
     return {
       items: [],
     }
   },
   methods: {
+    ...mapActions([
+      'showFilterDialog',
+      'hideFilterDialog',
+    ]),
     getGenderIcon(gender) {
       let icon = 'mdi-human-male';
 
