@@ -18,7 +18,8 @@
           outlined
           label="Search TeeRex"
           append-icon="mdi-magnify"
-          @click:append="search"
+          @click:append="search()"
+          v-model="searchTerm"
         />
       </v-container>
           <router-link to="/checkout">
@@ -36,12 +37,14 @@
 <script>
 export default {
   name: 'App',
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      searchTerm: '',
+    };
+  },
   methods: {
     search() {
-      alert("YEEHAW!");
+      this.$store.dispatch('setSearchTerm', this.searchTerm)
     },
   },
   beforeCreate() {

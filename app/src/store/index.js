@@ -51,6 +51,7 @@ export default new Vuex.Store({
         appliedFilters: [],
       },
     ],
+    searchTerm: '',
     showDeletionConfirmationModal: false,
     showFilterDialog: false,
   },
@@ -64,6 +65,16 @@ export default new Vuex.Store({
             return filter.appliedFilters.includes(item[filter.apiKey]);
           });
         }
+      }
+
+      if (state.searchTerm.length > 0) {
+        filteredItems = filteredItems.filter((item) => {
+          for (let key in item) {
+            if (item[key] == state.searchTerm) {
+              return item;
+            }
+          }
+        });
       }
 
       return filteredItems;
@@ -102,6 +113,9 @@ export default new Vuex.Store({
     APPLY_FILTERS(state, filters) {
       state.filters = filters;
     },
+    SET_SEARCH_TERM(state, searchTerm) {
+      state.searchTerm = searchTerm;
+    }
   },
   actions: {
     async initItems(context) {
@@ -137,6 +151,9 @@ export default new Vuex.Store({
     },
     applyFilters(context, filters) {
       context.commit('APPLY_FILTERS', filters);
+    },
+    setSearchTerm(context, searchTerm) {
+      context.commit('SET_SEARCH_TERM', searchTerm);
     },
   },
   modules: {
