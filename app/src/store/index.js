@@ -99,6 +99,9 @@ export default new Vuex.Store({
     HIDE_FILTER_DIALOG(state) {
       state.showFilterDialog = false;
     },
+    APPLY_FILTERS(state, filters) {
+      state.filters = filters;
+    },
   },
   actions: {
     async initItems(context) {
@@ -131,6 +134,9 @@ export default new Vuex.Store({
     },
     hideFilterDialog(context) {
       context.commit('HIDE_FILTER_DIALOG');
+    },
+    applyFilters(context, filters) {
+      context.commit('APPLY_FILTERS', filters);
     },
   },
   modules: {
