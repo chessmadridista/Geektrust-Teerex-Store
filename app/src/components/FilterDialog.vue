@@ -2,7 +2,7 @@
     <v-dialog
         v-model="$store.state.showFilterDialog"
     >
-        <v-card>
+        <v-card class="pb-3">
             <v-card-title>
                 Apply filters
             </v-card-title>
@@ -11,7 +11,7 @@
                     <v-row>
                         <v-col 
                             cols="6"
-                            v-for="filter of filters"
+                            v-for="filter of $store.state.filters"
                             :key="filter.id"
                         >
                             <v-select
@@ -33,7 +33,7 @@
             <v-card-actions>
                 <v-btn text color="error" @click="hideFilterDialog">Cancel</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn color="primary">Apply</v-btn>
+                <v-btn color="primary" @click="applyFilters">Apply</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -43,55 +43,14 @@ import { mapActions } from 'vuex';
 
 export default {
     name: 'FilterDialog',
-    data() {
-        return {
-            filters: [
-                {
-                    id: 0,
-                    label: 'Colour',
-                    availableFilters: [
-                        'Red',
-                        'Blue',
-                        'Green',
-                    ],
-                    appliedFilters: [],
-                },
-                {
-                    id: 1,
-                    label: 'Gender',
-                    availableFilters: [
-                        'Men',
-                        'Women',
-                    ],
-                    appliedFilters: [],
-                },
-                {
-                    id: 2,
-                    label: 'Price',
-                    availableFilters: [
-                        '< ₹250',
-                        '₹250 - ₹450',
-                        '> ₹450',
-                    ],
-                    appliedFilters: [],
-                },
-                {
-                    id: 3,
-                    label: 'Type',
-                    availableFilters: [
-                        'Polo',
-                        'Hoodie',
-                        'Basic',
-                    ],
-                    appliedFilters: [],
-                },
-            ],
-        };
-    },
     methods: {
         ...mapActions([
             'hideFilterDialog',
         ]),
+        applyFilters() {
+            this.$store.dispatch('applyFilters');
+            this.hideFilterDialog();
+        },
     },
 }
 </script>
