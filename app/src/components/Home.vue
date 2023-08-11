@@ -9,7 +9,7 @@
     </v-row>
     <v-row>
       <v-col 
-      v-for="item in this.$store.state.items" 
+      v-for="item in $store.getters.getFilteredItems" 
       :key="item.id" 
       cols="12"
       md="6"

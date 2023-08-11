@@ -10,6 +10,7 @@ export default new Vuex.Store({
       {
         id: 0,
         label: 'Colour',
+        apiKey: 'color',
         availableFilters: [
           'Red',
           'Blue',
@@ -20,6 +21,7 @@ export default new Vuex.Store({
       {
         id: 1,
         label: 'Gender',
+        apiKey: 'gender',
         availableFilters: [
           'Men',
           'Women',
@@ -29,6 +31,7 @@ export default new Vuex.Store({
       {
         id: 2,
         label: 'Price',
+        apiKey: 'price',
         availableFilters: [
           '< ₹250',
           '₹250 - ₹450',
@@ -39,6 +42,7 @@ export default new Vuex.Store({
       {
         id: 3,
         label: 'Type',
+        apiKey: 'type',
         availableFilters: [
           'Polo',
           'Hoodie',
@@ -51,6 +55,19 @@ export default new Vuex.Store({
     showFilterDialog: false,
   },
   getters: {
+    getFilteredItems(state) {
+      let filteredItems = state.items;
+
+      for (let filter of state.filters) {
+        if (filter.appliedFilters.length > 0) {
+          filteredItems = filteredItems.filter((item) => {
+            return filter.appliedFilters.includes(item[filter.apiKey]);
+          });
+        }
+      }
+
+      return filteredItems;
+    },
     getItemsInCart(state) {
       return state.items.filter((item) => {
         return item.quantityInCart > 0;
