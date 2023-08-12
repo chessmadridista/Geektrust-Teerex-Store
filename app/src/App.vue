@@ -5,27 +5,29 @@
       color="primary"
       dark
     >
-      <v-row>
-        <v-col cols="8" sm="9" md="10" xl="11" class="mt-7">
-          <v-text-field
-            filled
-            dense
-            outlined
-            label="Search TeeRex"
-            prepend-inner-icon="mdi-magnify"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="4" sm="3" md="2" xl="1" class="mt-6">
-          <v-btn icon>
-            <v-icon>mdi-filter</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>mdi-cart-outline</v-icon>
-          </v-btn>
-        </v-col>
-      </v-row>
+      <router-link to="/">
+        <v-img
+          src="./assets/Teerex logo.png"
+          width="50"
+        />
+      </router-link>
+      <v-container class="ml-4 mt-6">
+        <v-text-field
+          filled
+          dense
+          outlined
+          label="Search TeeRex"
+          append-icon="mdi-magnify"
+          @click:append="search()"
+          v-model="searchTerm"
+        />
+      </v-container>
+          <router-link to="/checkout">
+            <v-btn icon>
+              <v-icon>mdi-cart-outline</v-icon>
+            </v-btn>
+          </router-link>
     </v-app-bar>
-
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -35,11 +37,23 @@
 <script>
 export default {
   name: 'App',
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      searchTerm: '',
+    };
+  },
+  methods: {
+    search() {
+      this.$store.dispatch('setSearchTerm', this.searchTerm)
+    },
+  },
+  beforeCreate() {
+    this.$store.dispatch('initItems');
+  },
 };
 </script>
-
-<style lang="scss" scoped>
+<style>
+#app {
+  background: #e3e4ff;
+}
 </style>
