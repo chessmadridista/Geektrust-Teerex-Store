@@ -107,6 +107,9 @@ export default new Vuex.Store({
     DECREASE_QUANTITY(state, id) {
       state.items[id].quantityInCart -= 1;
     },
+    RESET_QUANTITY(state, id) {
+      state.items[id].quantityInCart = 0;
+    },
     SHOW_DELETION_CONFIRMATION_MODAL(state) {
       state.showDeletionConfirmationModal = true;
     },
@@ -145,6 +148,9 @@ export default new Vuex.Store({
     },
     decreaseQuantity(context, id) {
       context.commit('DECREASE_QUANTITY', id);
+    },
+    resetQuantity(context, id) {
+      context.commit('RESET_QUANTITY', id);
     },
     showDeletionConfirmationModal(context) {
       context.commit('SHOW_DELETION_CONFIRMATION_MODAL');

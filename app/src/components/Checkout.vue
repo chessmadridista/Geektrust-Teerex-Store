@@ -89,7 +89,7 @@
         </v-row>
         <v-row v-if="$store.getters.getItemsInCart.length">
           <v-col>
-            <v-btn color="primary" block>Place order</v-btn>
+            <v-btn color="primary" block @click="placeOrder">Place order</v-btn>
           </v-col>
         </v-row>
       <CheckoutDeleteItemConfirmation :id="id" />
@@ -150,6 +150,13 @@ export default {
         this.$store.dispatch('showDeletionConfirmationModal');
       } else {
         this.$store.dispatch('decreaseQuantity', id - 1);
+      }
+    },
+    placeOrder() {
+      const items = this.$store.getters.getItemsInCart;
+
+      for (let item of items) {
+        this.$store.dispatch('resetQuantity', item.id - 1);
       }
     },
   },
