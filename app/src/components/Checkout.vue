@@ -65,7 +65,7 @@
         <v-row v-if="$store.getters.getItemsInCart.length">
           <v-col>
             <v-card>
-              <v-card-title class="justify-center">Your bill</v-card-title>
+              <v-card-title class="justify-center blue--text text--darken-3">Your bill</v-card-title>
               <v-card-text>
                 <v-data-table
                 :headers="headers"
