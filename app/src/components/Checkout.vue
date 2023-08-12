@@ -64,6 +64,30 @@
         </v-row>
         <v-row v-if="$store.getters.getItemsInCart.length">
           <v-col>
+            <v-card>
+              <v-card-title class="justify-center">Your bill</v-card-title>
+              <v-card-text>
+                <v-data-table
+                :headers="headers"
+                :items="$store.getters.getItemsInCart"
+                >
+                  <template
+                    v-slot:[`item.price`]="{ item }"
+                  >
+                    ₹{{ item.price }}
+                  </template>
+                  <template
+                    v-slot:[`item.totalPrice`]="{ item }"
+                  >
+                    ₹{{ item.quantityInCart * item.price }}
+                  </template>
+                </v-data-table>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row v-if="$store.getters.getItemsInCart.length">
+          <v-col>
             <v-btn color="primary" block>Place order</v-btn>
           </v-col>
         </v-row>
@@ -82,6 +106,28 @@ export default {
   data() {
     return {
       id: null,
+      headers: [
+        {
+          text: 'S.No.',
+          value: 'id',
+        },
+        {
+          text: 'Name',
+          value: 'name',
+        },
+        {
+          text: 'Quantity',
+          value: 'quantityInCart',
+        },
+        {
+          text: 'M.R.P.',
+          value: 'price',
+        },
+        {
+          text: 'Total price',
+          value: 'totalPrice',
+        },
+      ],
     };
   },
   methods: {
