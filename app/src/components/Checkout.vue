@@ -93,6 +93,23 @@
           </v-col>
         </v-row>
       <CheckoutDeleteItemConfirmation :id="id" />
+      <v-snackbar 
+        v-model="showSnackbar"
+        color="success"
+        top
+        right
+      >
+        Congratulations! Your order has been placed successfully.
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            text
+            v-bind="attrs"
+            @click="showSnackbar = false"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-container>
 </template>
 
@@ -107,6 +124,7 @@ export default {
   data() {
     return {
       id: null,
+      showSnackbar: false,
       headers: [
         {
           text: 'S.No.',
@@ -158,6 +176,8 @@ export default {
       for (let item of items) {
         this.$store.dispatch('resetQuantity', item.id - 1);
       }
+
+      this.showSnackbar = true;
     },
   },
 }
