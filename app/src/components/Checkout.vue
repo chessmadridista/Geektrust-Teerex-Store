@@ -82,6 +82,7 @@
                     ₹{{ item.quantityInCart * item.price }}
                   </template>
                 </v-data-table>
+                <p class="text-center">Your total price = ₹{{ $store.getters.getTotalPrice }}</p>
               </v-card-text>
             </v-card>
           </v-col>

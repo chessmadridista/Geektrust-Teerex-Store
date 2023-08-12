@@ -84,6 +84,17 @@ export default new Vuex.Store({
         return item.quantityInCart > 0;
       });
     },
+    getTotalPrice(state) {
+      return state.items.reduce((total, item) => {
+        if (item.quantityInCart > 0) {
+          console.log('QuantityInCart = ', item.quantityInCart);
+          return total + (item.quantityInCart * item.price);
+        } else {
+          console.log('Total = ', total);
+          return total;
+        }
+      }, 0);
+    },
   },
   mutations: {
     INIT_ITEMS(state, items) {
